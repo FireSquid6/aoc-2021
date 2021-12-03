@@ -9,11 +9,23 @@ def sign(n):  # returns 1 if the number is positive, and -1 if the number is neg
         return -1
 
 
+def bin_to_decimal(bitstring):
+    n = 0
+    i = len(bitstring) - 1
+    bit = 0
+
+    while i > 0:
+        n += int(bitstring[i]) * (2 ** bit)
+
+        i -= 1
+        bit += 1
+
+    return n
+
+
 # open the file
-file = open("day-3\input.txt", "r")  # open the file
-bit_amounts = []  # the amount of each place throughout the input
-for i in range(0, len(file[0]) - 1):  # fill the bit_amounts array with 0's
-    bit_amounts[i] = 0
+file = open("day - 3\input.txt", "r")
+bit_amounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
 # parse the input
 for line in file:  # for each line in the input file
@@ -31,7 +43,17 @@ for line in file:  # for each line in the input file
 bin_gamma_rate = ""
 bin_epsilon_rate = ""
 
+for i in range(0, len(bit_amounts) - 1):
+    if bit_amounts[i] < 0:
+        bin_gamma_rate += "0"
+        bin_epsilon_rate += "1"
+    else:
+        bin_gamma_rate += "1"
+        bin_epsilon_rate += "0"
 
 # convert the binary numbers into decimal
+dec_gamma_rate = bin_to_decimal(bin_gamma_rate)
+dec_epsilon_rate = bin_to_decimal(bin_epsilon_rate)
 
 # print the output
+print(str(dec_gamma_rate * dec_epsilon_rate))
