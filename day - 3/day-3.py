@@ -11,10 +11,10 @@ def sign(n):  # returns 1 if the number is positive, and -1 if the number is neg
 
 def bin_to_decimal(bitstring):
     n = 0
-    i = len(bitstring)
+    i = len(bitstring) - 1
     bit = 0
 
-    while i > 0:
+    while i >= 0:
         n += int(bitstring[i]) * (2 ** bit)
 
         i -= 1
